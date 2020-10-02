@@ -1,0 +1,13 @@
+{
+    "name": "apiles/clays",
+    "description": "Clays is a cluster management shell.",
+    "type": "project",
+    "license": "Apache 2",
+    "authors": [
+        {
+            "name": "Tianle Xu",
+            "email": "xtl@xtlsoft.top"
+        }
+    ],
+    "require": {}
+}
