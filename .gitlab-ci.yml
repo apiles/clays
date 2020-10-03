@@ -3,9 +3,8 @@ stages:
 
 psalm_check:
   stage: tests
-  image: php:latest
+  image: composer:latest
   before_script:
-    - apt-get update && apt-get install -y composer
     - composer install
   script:
     - vendor/bin/psalm
