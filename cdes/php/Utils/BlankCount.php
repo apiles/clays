@@ -10,14 +10,16 @@
 
 namespace Apiles\Clays\ClaysDescriptor\Utils;
 
+use SplStack;
+
 class BlankCount
 {
     /**
      * Count stack
      *
-     * @var \SplStack
+     * @var SplStack
      */
-    protected $stack = null;
+    protected $stack;
 
     /**
      * Current level
@@ -31,8 +33,19 @@ class BlankCount
      */
     public function __construct()
     {
-        $this->current = 0;
-        $this->level = 0;
+        $this->initialize();
+    }
+
+    /**
+     * Initialize the instance
+     *
+     * @return void
+     */
+    public function initialize(): void
+    {
+        $this->stack = new SplStack;
+        $this->stack->push(0);
+        $this->level = 1;
     }
 
     /**
@@ -49,14 +62,17 @@ class BlankCount
             $this->stack->push($cnt);
             $this->level++;
         } elseif ($cnt < $this->stack->top()) {
-            $curr = 0;
-            do {
+            $this->stack->pop();
+            $curr = $this->stack->pop();
+            $this->level--;
+            while ($cnt != $curr) {
                 if ($cnt > $curr) {
                     throw new UnmatchedBracketsException("Blanks not matched");
                 }
-                $curr = $this->stack->pop();
                 $this->level--;
-            } while ($cnt < $curr);
+                $curr = $this->stack->pop();
+            }
+            $this->stack->push($curr);
         }
 
         return $this->getLevel();

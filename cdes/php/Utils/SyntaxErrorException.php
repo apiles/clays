@@ -13,6 +13,6 @@ namespace Apiles\Clays\ClaysDescriptor\Utils;
 
 use Exception;
 
-class UnmatchedBracketsException extends SyntaxErrorException
+class SyntaxErrorException extends Exception
 {
 }

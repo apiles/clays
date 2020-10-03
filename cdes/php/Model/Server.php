@@ -29,7 +29,7 @@ class Server
     /**
      * Properties
      *
-     * @var string[string]
+     * @var string[]
      */
     public $properties = [];
 

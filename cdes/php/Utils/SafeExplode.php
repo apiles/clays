@@ -34,6 +34,11 @@ class SafeExplode
         return in_array($char, ["\t", ' ', "\n", "\r"]);
     }
 
+    public static function isEmptyLine(string $line): bool
+    {
+        return trim($line) === '';
+    }
+
     public static function isIdentifyCharacter(string $char): bool
     {
         return in_array(
