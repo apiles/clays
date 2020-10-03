@@ -61,7 +61,8 @@ class Parser
         $currGroup = '';
         $currServer = '';
 
-        foreach ($lines as $num => $line) {
+        foreach ($lines as $n => $line) {
+            $num = $n + 1;
             if (SafeExplode::isEmptyLine($line)) continue;
             try {
                 $level = $this->counter->feed($line);
@@ -131,8 +132,8 @@ class Parser
                         }
                         $currServer = $tokenized[1];
                         $rslt[$currCluster]->groups[$currGroup]->servers[$currServer] = new Server;
-                        $rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->name = $currGroup;
-                        $rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->address = $tokenized[2];
+                        $rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->name = $currServer;
+                        $rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->address = trim($tokenized[2]);
                     } else {
                         throw new SyntaxErrorException("Unrecognized command $tokenized[0] on line $num");
                     }
@@ -149,6 +150,9 @@ class Parser
                             $val = json_encode($val);
                         }
                         $rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->properties[$tokenized[0]] = json_decode($val, true);
+                        if ($rslt[$currCluster]->groups[$currGroup]->servers[$currServer]->properties[$tokenized[0]] === null) {
+                            throw new SyntaxErrorException("JSON Syntax Error on line $num");
+                        }
                     }
                     break;
                 default:

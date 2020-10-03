@@ -46,4 +46,12 @@ class SafeExplode
             str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_')
         );
     }
+
+    public static function isIdentify(string $str): bool
+    {
+        foreach (str_split($str) as $ch) {
+            if (!self::isIdentifyCharacter($ch)) return false;
+        }
+        return true;
+    }
 }

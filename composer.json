@@ -18,6 +18,9 @@
             "./cdes/php/constant.php"
         ]
     },
+    "bin": [
+        "bin/cdesfmt"
+    ],
     "require-dev": {
         "psy/psysh": "^0.10.4",
         "vimeo/psalm": "^3.16"

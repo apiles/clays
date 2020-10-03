@@ -1,15 +1,12 @@
 clays.descriptor.version 1
 
 cluster main
-    .comment The main cluster
+    .comment The main cluster for common purpose
     group main
-        server test 1.1.1.1:2312
-            .comment test server
-            keep-alive false
-        server tes2 1.1.1.2:2312
-            keep-alive true
-            tls {"c": "def"}
+        server main 1.1.1.2:2312
+            keep-alive 1
+            tls {"c":"def"}
     group second
-        server temp 1.2.3.4:1234
+        server second 1.2.3.4:1234
 
 cluster b

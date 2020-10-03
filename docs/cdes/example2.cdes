@@ -1,0 +1,47 @@
+clays.descriptor.version 1
+
+cluster main
+    .comment 主要 Serverless 集群
+    group discovery
+        server master apiles-discovery://10.0.1.1:1213
+            role master
+            children ["main.discovery.01","main.discovery.02"]
+        server 01 apiles-discovery://10.0.2.2:1213
+        server 02 apiles-discovery://10.0.2.3:1213
+    group runner
+        .comment 运行器小组
+        server 01 grpc://10.2.12.122:1333
+            token "v2sAi!c9Aix"
+            version 1
+        server 02 grpc://10.2.12.123:1333
+            token "sx2@ddA9dza"
+            version 1
+        server 03 grpc://10.2.12.124:1333
+            token "Ax8f*jca2@S"
+            version 1
+        server 04 grpc://10.2.12.125:1333
+            token "ndsSj8xaA#s"
+            version 1
+        server 05 grpc://10.2.12.126:1333
+            token "Ns7Xud8A0@a"
+            version 2
+        server 06 grpc://10.2.12.127:1333
+            token "Ax8D8c#jS9k"
+            version 2
+
+cluster business
+    .comment 业务层集群
+    group website
+        .comment 网站组
+        server nginx-01 https://10.42.22.12:443
+        server nginx-02 https://10.42.22.14:443
+    group database
+        .comment 数据库集群
+        server tikv-01 10.23.22.101
+        server tikv-02 10.23.22.102
+        server tikv-03 10.23.22.103
+        server pd-01 10.23.23.101
+        server pd-02 10.23.23.102
+        server pd-03 10.23.23.103
+        server tidb-01 10.23.23.201
+        server tidb-02 10.23.23.202
