@@ -1,0 +1,12 @@
+stages:
+  - tests
+
+psalm_check:
+  stage: tests
+  image: php:latest
+  before_script:
+    - composer install
+  script:
+    - vendor/bin/psalm
+  tags:
+    - docker
