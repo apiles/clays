@@ -12,7 +12,14 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Apiles\\Clays\\ClaysDescriptor": "./cdes/php/"
-        }
+            "Apiles\\Clays\\ClaysDescriptor\\": "./cdes/php/"
+        },
+        "files": [
+            "./cdes/php/constant.php"
+        ]
+    },
+    "require-dev": {
+        "psy/psysh": "^0.10.4",
+        "vimeo/psalm": "^3.16"
     }
 }
