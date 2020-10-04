@@ -1,0 +1,24 @@
+#!/usr/bin/php
+<?php
+
+use Apiles\Clays\ClaysDescriptor\Parser;
+use Apiles\Clays\ClaysDescriptor\Writer;
+
+if (is_file(__DIR__ . '/../vendor/autoload.php')) {
+    require __DIR__ . '/../vendor/autoload.php';
+} elseif (is_file(__DIR__ . '/../../../autoload.php')) {
+    require __DIR__ . '/../../../autoload.php';
+}
+
+if ($argc != 2) {
+    echo "USAGE: {$argv[0]} FILENAME\r\n";
+    die();
+}
+
+$file = $argv[1];
+
+if (!file_exists($file)) {
+    throw new Exception("File not found: $file");
+}
+
+echo json_encode((new Parser)->parseFile($file));

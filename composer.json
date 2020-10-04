@@ -19,7 +19,8 @@
         ]
     },
     "bin": [
-        "bin/cdesfmt"
+        "bin/cdesfmt",
+        "bin/cdesparse"
     ],
     "require-dev": {
         "psy/psysh": "^0.10.4",
